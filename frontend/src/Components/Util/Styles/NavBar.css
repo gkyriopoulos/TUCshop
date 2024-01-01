@@ -1,0 +1,65 @@
+.navbar{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    padding-left: 30px;
+    padding-bottom: 30px;
+    position: fixed;
+    border-bottom: 2px solid #242424;
+    z-index: 1000;
+}
+
+
+ul li{
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 170px;
+    margin-top: 30px;
+    font-family: 'Rubik Mono One';
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: black;
+}
+
+ul li a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul li:hover{
+    text-decoration: underline;
+}
+
+.logo{
+    position: absolute;
+    top: 20px;
+}
+
+.searchbar{
+    display: flex;
+    align-items: center;
+    background: #eaeaea;
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 300px;
+    margin-top: 30px;
+    margin-right: 99px;
+}
+
+.searchbar input{
+    padding: 5px;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: #242424;
+    font-size: 18px;
+    width: 320px;
+    font-family: 'Open Sans';
+    font-size: 15px;
+}
+
+.searchbar img{
+    color: #fff;
+}

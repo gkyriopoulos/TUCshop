@@ -1,0 +1,89 @@
+.cart-container-main{
+    padding-top: 7.5rem;
+    min-height: 51.7rem;
+}
+.cart-main-info{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    width: 120rem;
+    border-bottom: 1px solid black;
+}
+
+.cart-prod{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 50rem;
+    margin-left: 30px;
+}
+
+.cart-prod-image{
+    height: 80px;
+    width: 80px;
+}
+
+.cart-prod-title{
+    padding-left: 1rem;
+    font-family: 'Rubik Mono One';
+    font-size: 15px;
+}
+
+.cart-plus-minus-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    width: 5rem;
+}
+
+#cart-plus-button{
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+}
+
+#cart-minus-button{
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+}
+
+.cart-price{
+    width: 10rem;
+    font-size: 15px;
+    font-family: 'Rubik Mono One';
+}
+
+#cart-remove-button{
+    margin-right: 30px;
+    font-size: 15px;
+}
+
+.cart-product-quantity{
+    margin-right: 10px;
+    margin-left: 10px;
+    font-family: 'Rubik Mono One';
+    font-size: 15px;
+}
+
+.total-cost-container{
+    padding-top: 30px;
+    display: flex;
+    justify-content: right;
+    padding-right: 30px;
+    align-items: center; 
+}
+
+.cart-total-cost{
+    font-family: 'Rubik Mono One';
+    font-size: 18px;
+    padding-right: 30px;
+    text-decoration: underline;
+}
+
+#cart-complete-order-button{
+    font-size: 15px;
+}
