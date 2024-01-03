@@ -1,4 +1,7 @@
-export async function handleLogin(loginData){
+const secret_register = "IpdLNA4lUwXwGoUwKcVV8OhrdxGLCUjy";
+const secret_login = "mDVPJ3KfOk0F9mImjgmDeRUdJQz9o3mf";
+
+async function handleLogin(loginData){
     try {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -7,7 +10,7 @@ export async function handleLogin(loginData){
         urlencoded.append("username", loginData.username);
         urlencoded.append("password", loginData.password);
         urlencoded.append("client_id", "frontend-app");
-        urlencoded.append("client_secret", "sjapJBAqVUyoBM9a81FE6eOwoztRkNBM");
+        urlencoded.append("client_secret", secret_login);
         urlencoded.append("grant_type", "password");
 
         var requestOptions = {
@@ -24,17 +27,17 @@ export async function handleLogin(loginData){
             
             //store in localstorage username, email, role (customer, seller) and refresh_token
             const decodeToken = await decodeJwt(token);
-            localStorage.setItem("username", decodeToken.preferred_username);
-            localStorage.setItem("email", decodeToken.email);
-            localStorage.setItem("refresh_token", login.refresh_token);
+            sessionStorage.setItem("username", decodeToken.preferred_username);
+            sessionStorage.setItem("email", decodeToken.email);
+            sessionStorage.setItem("refresh_token", login.refresh_token);
             if(decodeToken.realm_access.roles.includes("seller")){
-                localStorage.setItem("role", "seller");
+                sessionStorage.setItem("role", "seller");
                 window.location.href = "/myproducts";
             }else if (decodeToken.realm_access.roles.includes("customer")) {
-                localStorage.setItem("role", "customer");
+                sessionStorage.setItem("role", "customer");
                 window.location.href = "/products";
             }else{
-                localStorage.setItem("role", "unkown");
+                sessionStorage.setItem("role", "unkown");
                 alert("Error during login: Unknown role.");
                 window.location.reload();
             }
@@ -50,7 +53,7 @@ export async function handleLogin(loginData){
     return false
 }
 
-export async function handleSignup(signupData){
+async function handleSignup(signupData){
     console.log(signupData.role);
 
     try {
@@ -60,7 +63,7 @@ export async function handleSignup(signupData){
         var urlencoded = new URLSearchParams();
         urlencoded.append("grant_type", "client_credentials");
         urlencoded.append("client_id", "admin-cli");
-        urlencoded.append("client_secret", "FTzIu8GPAvFLsHmghJuS5TML8XuRsZNU");
+        urlencoded.append("client_secret", secret_register);
 
         var requestOptions = {
             method: 'POST',
@@ -143,3 +146,6 @@ function decodeJwt(jwtToken) {
   
     return JSON.parse(jsonPayload);
   }
+
+
+export {handleLogin, handleSignup}

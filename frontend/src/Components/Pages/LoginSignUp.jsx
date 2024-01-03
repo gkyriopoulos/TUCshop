@@ -1,5 +1,5 @@
 import React from 'react'
-import {useState} from "react";
+import {useState, useRef } from "react";
 import {CSSTransition} from "react-transition-group"
 import user_icon from '../Assets/user-icon.png'
 import email_icon from '../Assets/email-icon.png'
@@ -14,13 +14,13 @@ function LoginSignUp() {
     //Variable for either login or sign up.
     const [action,setAction] = useState(true);
     //Variable for username.
-    const [username, setUsername] = useState(null);
+    const [username, setUsername] = useState("");
     //Variable for password.
-    const [password, setPassword] = useState(null);
+    const [password, setPassword] = useState("");
     //Variable for email.
-    const [email, setEmail] = useState(null);
+    const [email, setEmail] = useState("");
     //Variable for seller or not.
-    const [role, setRole] = useState(null);
+    const [role, setRole] = useState("");
 
     const loginData =  {
         username: username,
@@ -33,6 +33,9 @@ function LoginSignUp() {
         email: email,
         role: role
     }
+
+    const emailTransitionRef = useRef(null);
+    const radioTransitionRef = useRef(null);
 
     const handleClickLogin = () => {
         setAction(true);
@@ -57,8 +60,8 @@ function LoginSignUp() {
                 <img src={logo} alt="" />
         </div>
         <div className="inputs">
-            <CSSTransition in={action} timeout = {250} appear = {true} classNames="input">
-                <div className="input">
+            <CSSTransition in={action} timeout = {250} appear = {true} classNames="input"  nodeRef={emailTransitionRef}> 
+                <div ref = {emailTransitionRef} className="input">
                     <img src={email_icon} alt="" />
                     <input type="email" placeholder='E-mail' value={email} onChange = {(e) => setEmail(e.target.value)} />
                 </div>
@@ -71,8 +74,8 @@ function LoginSignUp() {
                 <img src={password_icon} alt="" />
                 <input type="password" placeholder='Password' value={password} onChange = {(e) => setPassword(e.target.value)} />
             </div>
-            <CSSTransition in={action} timeout = {250} appear = {true} classNames="input-radio">
-                <div className= "input-radio">
+            <CSSTransition in={action} timeout = {250} appear = {true} classNames="input-radio" nodeRef={radioTransitionRef}> 
+                <div ref = {radioTransitionRef} className= "input-radio">
                     <input type="radio" name="user" value ="Customers" onChange = {(e) => setRole(e.target.value)} />Customer
                     <input type="radio" name="user" value ="Sellers"  onChange = {(e) => setRole(e.target.value)} style={{marginLeft: '15px'}}/>Seller
                 </div>
