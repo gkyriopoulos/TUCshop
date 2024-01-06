@@ -1,10 +1,3 @@
-.container-main{ 
-    background-size: contain;
-    background-position: center;
-    background-position-y: 100px;
-    background-position-x: 50px;
-}
-
 .container-products{
     margin-left: 450px;
     padding-top: 130px;

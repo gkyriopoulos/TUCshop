@@ -6,10 +6,10 @@ import MyProducts from './Components/Pages/MyProducts';
 import Cart from './Components/Pages/Cart';
 import Orders from './Components/Pages/Orders';
 import Nopage from './Components/Pages/NoPage';
-import NavBar from './Components/Util/NavBar';
+import NavBarCustomer from './Components/Util/NavBarCustomer';
 import ProductPage from './Components/Pages/ProductPage';
 import { CartProvider } from './Components/Util/CartContext';
-import { UserRoute } from './Components/Util/UserRoute';
+import { AuthRoute } from './Components/Util/AuthRoute';
 
 function App() { 
 
@@ -19,14 +19,14 @@ function App() {
         <BrowserRouter>
           <div>
             <Routes>
-                  <Route element={<UserRoute role = "customer" />}>
-                    <Route path="/cart" element={<> <NavBar/> <Cart /> </>}/>
-                    <Route path="/orders" element={<><NavBar/> <Orders /></>} />
-                    <Route path="/products" element={<><NavBar/> <Products /></>} />
-                    <Route path="/product/:prodId" element={<><NavBar/> <ProductPage/></>} />
+                  <Route element={<AuthRoute role = "customer" />}>
+                    <Route path="/cart" element={<> <NavBarCustomer/> <Cart/> </>}/>
+                    <Route path="/orders" element={<> <NavBarCustomer/> <Orders /> </>} />
+                    <Route path="/products" element={<> <NavBarCustomer/> <Products /> </>} />
+                    <Route path="/product/:prodId" element={<> <NavBarCustomer/> <ProductPage/> </>} />
                   </Route>
-                  <Route element={<UserRoute role = "seller" />}>
-                    <Route path="/myproducts" element={<><NavBar/> <MyProducts /> </>} />
+                  <Route element={<AuthRoute role = "seller" />}>
+                    <Route path="/myproducts" element={<> <NavBarCustomer/> <MyProducts /> </>} />
                   </Route>
                   <Route path="*" element={<Nopage />} />
                   <Route index element={<LoginSignUp />} />
@@ -40,3 +40,10 @@ function App() {
 }
 
 export default App;
+
+/*TODO:
+  1)Submit by pressing enter as well on loginpage 
+  2)Add all the fields warning before sending log in request. 
+  3)Add an alert if you enter wrong credentials.
+  4)Add request the auth helper via a local server.
+ */

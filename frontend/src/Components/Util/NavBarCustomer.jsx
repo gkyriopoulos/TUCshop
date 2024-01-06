@@ -1,30 +1,26 @@
 import React from 'react'
 import logo from '../Assets/logo125_cropped.png'
-import search from '../Assets/search.png'
 import {useCart} from './CartContext'
-import './Styles/NavBar.css'
+import './Styles/NavBarCustomer.css'
+import {handleLogout} from './AuthHelper'
 
-
-const NavBar = () => {
+const NavBarCustomer = () => {
   const {getTotalProductCount} = useCart();
   return (
     <div className='navbar'>
-      <div className='searchbar'>
-        <input type="text" placeholder='Search' />
-        <img src={search} alt="" className="" />
-      </div>
-
       <ul>
         <li><a href="/products">Products</a></li>
         <li><a href="/cart">Cart({getTotalProductCount()})</a></li>
         <li><img src={logo} alt = "" className='logo'></img></li>
         <li><a href="/orders">Orders</a></li>
-        <li><a href="/myproducts">My Products</a></li>
       </ul>
-            
 
+      <div className='username-logout-container'>
+        <div className="navbar-username">{localStorage.getItem("username")}</div>
+        <button className='navbar-logout' onClick = {() => handleLogout()}> Logout</button>
+      </div> 
     </div>
   )
 }
 
-export default NavBar
+export default NavBarCustomer

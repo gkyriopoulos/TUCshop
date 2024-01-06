@@ -1,2 +1,4 @@
 /frontend/node_modules
+/backend/orders/node_modules
+/backend/products/node_modules
 

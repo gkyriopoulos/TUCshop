@@ -1,9 +1,9 @@
 import React from 'react';
 import { Navigate, Outlet} from 'react-router-dom';
 
-export const UserRoute = ({children, role}) => {
-  const refresh_token = sessionStorage.getItem('refresh_token');
-  const user_role = sessionStorage.getItem('role');
+export const AuthRoute = ({role}) => {
+  const refresh_token = localStorage.getItem('refresh_token');
+  const user_role = localStorage.getItem('role');
   if (refresh_token && (user_role === role)) {
     return <Outlet />;
   } else {

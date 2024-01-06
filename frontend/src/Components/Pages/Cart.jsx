@@ -1,6 +1,7 @@
 import React from 'react'
 import './Styles/Cart.css'
 import { useCart } from '../Util/CartContext'
+import { Link } from 'react-router-dom'
 
 const Cart = () => {
   const {cart, handleAddToCart, handleRemoveFromCart, handleRemoveProduct, getTotalProductCost} = useCart();
@@ -12,7 +13,7 @@ const Cart = () => {
             <div className="cart-main-info">
               <div className="cart-prod">
                 <img src={product.img} alt="" className="cart-prod-image" />
-                <div className="cart-prod-title">{product.title}</div>
+                <Link to={`/product/${product.id}`} state = {product} className="cart-prod-title">{product.title}</Link>
               </div>
               <div className="cart-plus-minus-buttons">
                 <button id = "cart-plus-button" className="custom-button" onClick={() => handleAddToCart(product)}>+</button>

@@ -1,5 +1,5 @@
-const secret_register = "IpdLNA4lUwXwGoUwKcVV8OhrdxGLCUjy";
-const secret_login = "mDVPJ3KfOk0F9mImjgmDeRUdJQz9o3mf";
+const master_secret = "IpdLNA4lUwXwGoUwKcVV8OhrdxGLCUjy";
+const frontend_secret = "mDVPJ3KfOk0F9mImjgmDeRUdJQz9o3mf";
 
 async function handleLogin(loginData){
     try {
@@ -10,7 +10,7 @@ async function handleLogin(loginData){
         urlencoded.append("username", loginData.username);
         urlencoded.append("password", loginData.password);
         urlencoded.append("client_id", "frontend-app");
-        urlencoded.append("client_secret", secret_login);
+        urlencoded.append("client_secret", frontend_secret);
         urlencoded.append("grant_type", "password");
 
         var requestOptions = {
@@ -27,17 +27,17 @@ async function handleLogin(loginData){
             
             //store in localstorage username, email, role (customer, seller) and refresh_token
             const decodeToken = await decodeJwt(token);
-            sessionStorage.setItem("username", decodeToken.preferred_username);
-            sessionStorage.setItem("email", decodeToken.email);
-            sessionStorage.setItem("refresh_token", login.refresh_token);
+            localStorage.setItem("username", decodeToken.preferred_username);
+            localStorage.setItem("email", decodeToken.email);
+            localStorage.setItem("refresh_token", login.refresh_token);
             if(decodeToken.realm_access.roles.includes("seller")){
-                sessionStorage.setItem("role", "seller");
+                localStorage.setItem("role", "seller");
                 window.location.href = "/myproducts";
             }else if (decodeToken.realm_access.roles.includes("customer")) {
-                sessionStorage.setItem("role", "customer");
+                localStorage.setItem("role", "customer");
                 window.location.href = "/products";
             }else{
-                sessionStorage.setItem("role", "unkown");
+                localStorage.setItem("role", "unkown");
                 alert("Error during login: Unknown role.");
                 window.location.reload();
             }
@@ -54,8 +54,6 @@ async function handleLogin(loginData){
 }
 
 async function handleSignup(signupData){
-    console.log(signupData.role);
-
     try {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -63,7 +61,7 @@ async function handleSignup(signupData){
         var urlencoded = new URLSearchParams();
         urlencoded.append("grant_type", "client_credentials");
         urlencoded.append("client_id", "admin-cli");
-        urlencoded.append("client_secret", secret_register);
+        urlencoded.append("client_secret", master_secret);
 
         var requestOptions = {
             method: 'POST',
@@ -116,7 +114,7 @@ async function handleSignup(signupData){
 
                 setTimeout(()=>{
                     window.location.reload();
-                },2000)
+                },1500)
 
                 return true;
             
@@ -137,6 +135,39 @@ async function handleSignup(signupData){
     return false;
 }
 
+async function handleLogout(){
+    try {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("refresh_token", localStorage.getItem("refresh_token"));
+        urlencoded.append("client_id", "frontend-app");
+        urlencoded.append("client_secret", frontend_secret);
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: 'follow'
+        };
+
+        const response = await fetch("http://localhost:8080/auth/realms/eshop/protocol/openid-connect/logout", requestOptions);
+        if(response.ok){
+            localStorage.clear();
+            window.location.href = "/"
+            return true;
+        }else{
+            const err = await response.json();
+            console.log(err) ;
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+    return false
+}
+
 function decodeJwt(jwtToken) {
     const base64Url = jwtToken.split('.')[1]; // Get the payload part of the JWT
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/'); // Replace Base64 URL encoding characters
@@ -148,4 +179,4 @@ function decodeJwt(jwtToken) {
   }
 
 
-export {handleLogin, handleSignup}
+export {handleLogin, handleSignup , handleLogout}

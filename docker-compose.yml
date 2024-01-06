@@ -3,8 +3,7 @@ version: '3.9'
 volumes:
   postgres_data:
   keycloak_data:
-  products_db_data:
-  orders_db_data:
+  mongodb_data:
 
 services:
 
@@ -13,6 +12,35 @@ services:
       context: ./frontend
     ports:
       - "3000:3000"
+
+  mongodb:
+    image: mongo
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+  
+  products_service:
+    build:
+      context: ./backend/products
+    ports:
+      - ${PORT_PRODUCTS}:${PORT_PRODUCTS}
+    depends_on:
+      - mongodb
+    environment:
+      - MONGODB_URI_PRODUCTS=${MONGODB_URI_PRODUCTS}
+      - PORT_PRODUCTS=${PORT_PRODUCTS}
+      
+  orders_service:
+   build:
+     context: ./backend/orders
+   ports:
+    - ${PORT_ORDERS}:${PORT_ORDERS}
+   depends_on:
+    - mongodb
+   environment:
+    - MONGODB_URI_ORDERS=${MONGODB_URI_ORDERS}
+    - PORT_ORDERS=${PORT_ORDERS}
 
   postgres:
       image: postgres

@@ -2,24 +2,24 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     background-color: white;
-    padding-left: 30px;
     padding-bottom: 30px;
     position: fixed;
     border-bottom: 2px solid #242424;
     z-index: 1000;
+    height: 80px;
 }
 
 
 ul li{
     display: inline-block;
     cursor: pointer;
-    margin-right: 170px;
+    margin-left: 190px;
     margin-top: 30px;
     font-family: 'Rubik Mono One';
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 19px;
     color: black;
 }
 
@@ -37,6 +37,35 @@ ul li:hover{
     top: 20px;
 }
 
+.username-logout-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+    height: 30px;
+    padding-top: 35px;
+    padding-left: 100px;
+    padding-right: 180px;
+    
+}
+
+.navbar-username{
+    margin-right: 30px;
+    font-family: 'Roboto Serif';
+    font-size: 15px;
+    padding: 4px;
+    border: 2px solid black
+}
+
+.navbar-logout {
+    background:none;  
+    cursor: pointer;
+    border: none;
+    text-decoration: underline;
+    font-family: 'Roboto Serif';
+    font-size: 13px;
+}
+/*
 .searchbar{
     display: flex;
     align-items: center;
@@ -63,3 +92,4 @@ ul li:hover{
 .searchbar img{
     color: #fff;
 }
+*/
