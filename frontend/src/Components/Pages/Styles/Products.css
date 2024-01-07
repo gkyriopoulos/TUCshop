@@ -5,3 +5,8 @@
     grid-template-columns: 350px 350px 350px 350px;
     justify-content: center;
 }
+
+#product-new-button{
+    margin-top: 1rem;
+    margin-left: 103rem;
+}

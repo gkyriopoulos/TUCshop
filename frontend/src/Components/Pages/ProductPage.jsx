@@ -11,9 +11,15 @@ const ProductPage = (props) => {
     return (
         <div className='container-main'>
             <div className="product-main-info">
-                <div className="product-full-card">
-                    <img src={location.state.img} alt="" className="product-img" />
-                    <h2 id="product-page-product-title" className='product-title'>{location.state.title}</h2>
+                <div className="product-full-card-and-info-container">
+                    <div className="product-full-card">
+                        <img src={location.state.img} alt="" className="product-img" />
+                        <h2 id="product-page-product-title" className='product-title'>{location.state.title}</h2>
+                    </div>
+                    <div className="seller-info-container">
+                        <div className="product-seller">Seller: {location.state.seller_username}</div>
+                        <div className="product-seller">Quantity: {location.state.quantity}</div>
+                    </div>
                 </div>
                 <div className="product-descript-cart-container">
                     <div className='product-description-container'>

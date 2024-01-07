@@ -8,29 +8,31 @@ import Orders from './Components/Pages/Orders';
 import Nopage from './Components/Pages/NoPage';
 import NavBarCustomer from './Components/Util/NavBarCustomer';
 import ProductPage from './Components/Pages/ProductPage';
+import MyProductsNew from './Components/Pages/MyProductsNew';
+import NavBarSeller from './Components/Util/NavBarSeller';
 import { CartProvider } from './Components/Util/CartContext';
 import { AuthRoute } from './Components/Util/AuthRoute';
 
 function App() { 
-
   return (
     <CartProvider>
       <div>
         <BrowserRouter>
           <div>
             <Routes>
-                  <Route element={<AuthRoute role = "customer" />}>
-                    <Route path="/cart" element={<> <NavBarCustomer/> <Cart/> </>}/>
-                    <Route path="/orders" element={<> <NavBarCustomer/> <Orders /> </>} />
-                    <Route path="/products" element={<> <NavBarCustomer/> <Products /> </>} />
-                    <Route path="/product/:prodId" element={<> <NavBarCustomer/> <ProductPage/> </>} />
-                  </Route>
-                  <Route element={<AuthRoute role = "seller" />}>
-                    <Route path="/myproducts" element={<> <NavBarCustomer/> <MyProducts /> </>} />
-                  </Route>
-                  <Route path="*" element={<Nopage />} />
-                  <Route index element={<LoginSignUp />} />
-                  <Route path="/loginsignup" element={<LoginSignUp />} />
+              <Route element={<AuthRoute role = "customer" />}>
+                <Route path="/cart" element={<> <NavBarCustomer/> <Cart/> </>}/>
+                <Route path="/orders" element={<> <NavBarCustomer/> <Orders /> </>} />
+                <Route path="/products" element={<> <NavBarCustomer/> <Products /> </>} />
+                <Route path="/product/:prodId" element={<> <NavBarCustomer/> <ProductPage/> </>} />
+              </Route> 
+              <Route element={<AuthRoute role = "seller" />}>
+                <Route path="/myproducts" element={<> <NavBarSeller/> <MyProducts /> </>} />
+                <Route path="/myproducts/new" element={<> <NavBarSeller/> <MyProductsNew /> </>} />
+              </Route> 
+              <Route path="*" element={<Nopage />} />
+              <Route index element={<LoginSignUp />} />
+              <Route path="/loginsignup" element={<LoginSignUp />} />
             </Routes>
           </div>
         </BrowserRouter>

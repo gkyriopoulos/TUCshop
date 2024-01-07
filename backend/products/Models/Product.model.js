@@ -14,7 +14,8 @@ const ProductScema = new Schema({
     },
     price: {
         type: Number,
-        default: 0.0
+        default: 0.0,
+        min: 0.0
     },
     description: {
         type: String,
@@ -38,7 +39,8 @@ const ProductScema = new Schema({
     },
     quantity: {
         type: Number,
-        default: 0
+        default: 0,
+        min: 0.0
     }
 })
 

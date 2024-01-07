@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('../Models/Order.model');
-
+const cors = require('cors');
+router.use(cors());
 
 router.post('/', async (req, res, next) => {
     try {

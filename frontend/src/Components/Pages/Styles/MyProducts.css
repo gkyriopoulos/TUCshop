@@ -1,0 +1,31 @@
+.myproducts-container-main{
+    padding-top: 7.5rem;
+}
+
+.myproducts-quantity-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 13rem;
+    margin-left: 1rem;
+}
+
+.myproducts-price-container{
+    display: flex;
+    width: 13rem;
+    margin-left: 1rem;
+}
+
+.myproducts-inputfield-quantity{
+    margin-left: 1.5rem;
+    width: 5rem;
+}
+
+.myproducts-inputfield-price{
+    margin-left: 1.5rem;
+    width: 5rem;
+}
+
+#product-delete-button{
+    margin-right: 2.8rem;
+}

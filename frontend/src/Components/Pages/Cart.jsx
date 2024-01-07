@@ -10,7 +10,7 @@ const Cart = () => {
     <div className="container-main">
       <div className='cart-container-main'>
           {cart.map( (product)=> (
-            <div className="cart-main-info">
+            <div className="cart-main-info" key={product.id}>  
               <div className="cart-prod">
                 <img src={product.img} alt="" className="cart-prod-image" />
                 <Link to={`/product/${product.id}`} state = {product} className="cart-prod-title">{product.title}</Link>

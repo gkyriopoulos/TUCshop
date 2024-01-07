@@ -45,10 +45,11 @@
   border-radius: 3px;
   font-size: 17px;
   font-family: 'Rubik Mono One';
-  transition: background 0.5s;
+  transition: background color 0.5s;
   cursor: pointer;
 }
 
 .custom-button:hover{
-  background-color: #eaeaea;
+  background-color: black;
+  color: white;
 }

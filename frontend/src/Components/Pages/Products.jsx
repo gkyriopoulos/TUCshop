@@ -1,32 +1,38 @@
-import React from 'react'
-import './Styles/Products.css'
-import dummyproducts from '../DummyData/dummyproducts'
-import ProductsList from '../Util/ProductsList'
+import React, { useState, useEffect } from 'react';
+import './Styles/Products.css';
+import ProductsList from '../Util/ProductsList';
+import { getProducts } from '../Util/ProdHelper';
 
 const Products = () => {
+  /*Fetch all the products from the database on page mount. */
+  
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    getProducts().then(data => {setProducts(data);});
+  }, []);
 
   return (
     <div className='container-main'>
       <div className="container-products">
-        {dummyproducts.map(dummyproducts=> (
+        {products.map(product => (
           <ProductsList
-            key = {dummyproducts.id}
-            id = {dummyproducts.id}
-            title = {dummyproducts.title}
-            img = {dummyproducts.img}
-            price = {dummyproducts.price}
-            quantity = {dummyproducts.quantity}
-            product_type = {dummyproducts.product_type}
-            product_color = {dummyproducts.product_color}
-            brand = {dummyproducts.brand}
-            description = {dummyproducts.description}
-            seller_username = {dummyproducts.seller_username}
+            key={product._id}
+            id={product._id}
+            title={product.title}
+            img={product.img}
+            price={product.price}
+            quantity={product.quantity}
+            product_type={product.product_type}
+            product_color={product.product_color}
+            brand={product.brand}
+            description={product.description}
+            seller_username={product.seller_username}
           />
-        ))
-        }
+        ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;
