@@ -1,8 +1,8 @@
 import axios from 'axios';
-
 const base_url = "http://localhost:5000/";
 
 async function getProducts() {
+  if (localStorage.getItem("token")){ 
     const url = base_url + "products"
     try {
       const response = await axios.get(url);
@@ -15,9 +15,16 @@ async function getProducts() {
     } catch (error) {
       console.error('Error fetching products:', error);
     }
+  }else{
+    alert("Non logged in users dont have access to this api call.")
+    setTimeout(()=>{
+      window.location.reload();
+    },500)
+  }
 };
 
 async function getProductId(productId) {
+  if(localStorage.getItem("token")){
     const url = base_url + "products/id/" + productId
     try {
       const response = await axios.get(url);
@@ -30,9 +37,16 @@ async function getProductId(productId) {
     } catch (error) {
       console.error('Error fetching product:', error);
     }
+  }else{
+    alert("Non logged in users dont have access to this api call.")
+    setTimeout(()=>{
+      window.location.reload();
+    },500)
+  }
 };
 
 async function getProductsTitle(productTitle) {
+  if (localStorage.getItem("token")){
     const url = base_url + "products/title/" + productTitle
     try {
       const response = await axios.get(url);
@@ -45,11 +59,17 @@ async function getProductsTitle(productTitle) {
     } catch (error) {
       console.error('Error fetching product:', error);
     }
+  }else{
+    alert("Non logged in users dont have access to this api call.")
+    setTimeout(()=>{
+      window.location.reload();
+    },500)
+  }
 };
 
-async function getProductsUsername() {
-    const url = base_url + "products/username/" + localStorage.getItem("username")
-    console.log(url)
+async function getProductsUsername(username) {
+  if (localStorage.getItem("token")){
+    const url = base_url + "products/username/" + username;
     try {
       const response = await axios.get(url);
       if(response.status === 200){
@@ -61,6 +81,12 @@ async function getProductsUsername() {
     } catch (error) {
       console.error('Error fetching products:', error);
     }
+  }else{
+    alert("Non logged in users dont have access to this api call.")
+    setTimeout(()=>{
+      window.location.reload();
+    },500)
+  }
 };
 
 async function updateProduct(product, productId){

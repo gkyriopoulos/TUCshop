@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import './Styles/ProductPage.css'
 import { useCart } from '../Util/CartContext'
+import './Styles/ProductPage.css'
 
 const ProductPage = (props) => {
     const location = useLocation();

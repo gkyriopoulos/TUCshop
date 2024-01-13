@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 require('dotenv').config()
 
 const app = express();
-const port = process.env.PORT_ORDERS || 6000;
+const port = process.env.PORT_ORDERS || 5001;
 const uri = process.env.MONGODB_URI_ORDERS || 'mongodb://localhost:27017/orders_db';
 
 mongoose.connect(uri, {})

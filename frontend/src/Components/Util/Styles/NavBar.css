@@ -1,8 +1,5 @@
 .navbar{
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: white;
     padding-bottom: 30px;
     position: fixed;
@@ -11,11 +8,17 @@
     height: 80px;
 }
 
+.navbar-list-container{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-left: 110px;
+}
 
 ul li{
     display: inline-block;
     cursor: pointer;
-    margin-left: 190px;
+    margin-left: 160px;
     margin-top: 30px;
     font-family: 'Rubik Mono One';
     font-weight: 600;
@@ -44,9 +47,7 @@ ul li:hover{
     width: 350px;
     height: 30px;
     padding-top: 35px;
-    padding-left: 100px;
     padding-right: 180px;
-    
 }
 
 .navbar-username{

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {createProduct} from '../Util/ProdHelper';
-import './Styles/MyProductsNew.css';
+import './Styles/NewProductForm.css';
 
 const MyProductsNew = () => {
     const [product, setProduct] = useState({
@@ -11,7 +11,7 @@ const MyProductsNew = () => {
         product_type: '',
         product_color: '',
         brand: '',
-        seller_username: '',
+        seller_username: localStorage.getItem("username"),
         quantity: 0,
       });
     
@@ -23,6 +23,7 @@ const MyProductsNew = () => {
       const handleSubmit = (e) => {
         e.preventDefault();
         createProduct(product);
+        alert("Product created successfully!");
         setTimeout(()=>{
             window.location.href = '/myproducts';
           },500)

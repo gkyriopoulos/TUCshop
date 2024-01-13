@@ -6,8 +6,8 @@ import email_icon from '../Assets/email-icon.png'
 import password_icon from '../Assets/password-icon.png'
 import logo from '../Assets/logo250-156.png'
 import login_icon from '../Assets/login-icon.png'
-import './Styles/LoginSignUp.css'
 import {handleLogin, handleSignup} from '../Util/AuthHelper'
+import './Styles/LoginSignUp.css'
 
 function LoginSignUp() {
 
@@ -47,10 +47,30 @@ function LoginSignUp() {
 
     const handleCommit = () => {
         if(action){
-            handleLogin(loginData);
+            if(checkLoginFields()){
+                handleLogin(loginData);
+            }
         }else{
-            handleSignup(signupData);
+            if(checkRegisterFields()){
+                handleSignup(signupData);
+            }
         }
+    }
+
+    const checkLoginFields = () => {
+        if(username === "" || password === ""){
+            alert("Please fill all the fields.");
+            return false;
+        }
+        return true;
+    }
+
+    const checkRegisterFields = () => { 
+        if(username === "" || password === "" || email === "" || role === ""){
+            alert("Please fill all the fields.");
+            return false;
+        }
+        return true;
     }
 
     return (

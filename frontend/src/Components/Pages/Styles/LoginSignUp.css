@@ -92,16 +92,17 @@
     border-radius: 3px;
     font-size: 14px;
     font-family: 'Rubik Mono One';
-    transition: background 0.5s;
+    transition: background color 0.5s;
     cursor: pointer;
 }
 
-/***********************************Radio Animation***********************************/
+
 button.pressed{
-    background-color: #eaeaea;
+    background-color: black;
+    color: white;
 }
 
-
+/***********************************Radio Animation***********************************/
 #login {
     border: 0;
     flex-basis: 0%;

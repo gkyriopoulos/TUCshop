@@ -30,6 +30,7 @@ async function handleLogin(loginData){
             localStorage.setItem("username", decodeToken.preferred_username);
             localStorage.setItem("email", decodeToken.email);
             localStorage.setItem("refresh_token", login.refresh_token);
+            localStorage.setItem("token", token);
             if(decodeToken.realm_access.roles.includes("seller")){
                 localStorage.setItem("role", "seller");
                 window.location.href = "/myproducts";
@@ -48,6 +49,7 @@ async function handleLogin(loginData){
         }
 
     } catch (error) {
+        alert('Error during login. Please try again.')
         console.log(error);
     }
     return false
@@ -129,6 +131,7 @@ async function handleSignup(signupData){
             }
         
     } catch (error) {
+        alert('Error during registration. Please try again.')
         console.log(error);
     }
 
@@ -163,6 +166,7 @@ async function handleLogout(){
         }
 
     } catch (error) {
+        alert('Error during logout. Please try again.')
         console.log(error);
     }
     return false
@@ -176,7 +180,18 @@ function decodeJwt(jwtToken) {
     }).join('')); // Decode Base64 and handle URI component encoding
   
     return JSON.parse(jsonPayload);
-  }
+}
 
+/**Checks if token has expired. It returns true if expired or if it doesnt exist. False otherwise. */
+function isTokenExpired() {
+    if(localStorage.getItem("token")){
+        if (decodeJwt(localStorage.getItem("token")).exp < Date.now() / 1000 ) {
+            return true;   
+        }else{
+            return false;
+        }
+    }
+    return true;
+}
 
-export {handleLogin, handleSignup , handleLogout}
+export {handleLogin, handleSignup , handleLogout, isTokenExpired}

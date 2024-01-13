@@ -6,7 +6,9 @@ import './Styles/MyProducts.css'
 const MyProducts = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    getProductsUsername().then(data => {setProducts(data);})
+    getProductsUsername().then(data => {
+      setProducts(data || []);
+    });
   }, []);
 
   function handleQuantityChange(product, value){

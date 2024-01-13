@@ -63,8 +63,31 @@ export const CartProvider = ({ children }) => {
       }
     };
 
+    const emptyCart = () => {
+      setCart([]);
+    }
+
+    /*Get the order in the format the backend expects it. */
+    const getOrder = () => {
+      if (getTotalProductCount() !== 0){
+        const orderProducts = cart.map((product) => ({
+          id: product.id,
+          title: product.title,
+          amount: product.quantity,
+        }));
+  
+        const newOrder = {
+          "products" : orderProducts,
+          "total_price" : getTotalProductCost(),
+          "customer_username" : localStorage.getItem('username'),
+        };
+        return newOrder
+      }
+      return null;
+    }
+
     return (
-      <CartContext.Provider value={{ cart, handleRemoveProduct, handleAddToCart, handleRemoveFromCart, getTotalProductCount, getTotalProductCost}}>
+      <CartContext.Provider value={{ cart, handleRemoveProduct, handleAddToCart, handleRemoveFromCart, getTotalProductCount, getTotalProductCost, getOrder, emptyCart}}>
       {children}
   </CartContext.Provider>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './Styles/Products.css';
 import ProductsList from '../Util/ProductsList';
 import { getProducts } from '../Util/ProdHelper';
+import './Styles/Products.css';
 
 const Products = () => {
   /*Fetch all the products from the database on page mount. */
