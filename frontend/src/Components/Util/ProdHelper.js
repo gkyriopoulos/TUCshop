@@ -70,6 +70,7 @@ async function getProductsTitle(productTitle) {
 async function getProductsUsername(username) {
   if (localStorage.getItem("token")){
     const url = base_url + "products/username/" + username;
+    //console.log(url)
     try {
       const response = await axios.get(url);
       if(response.status === 200){

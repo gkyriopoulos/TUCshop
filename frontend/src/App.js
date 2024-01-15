@@ -29,7 +29,7 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       if(!(window.location.pathname === "/loginsignup" || window.location.pathname === "/")){
-        //setTokenExpired(isTokenExpired());
+        setTokenExpired(isTokenExpired());
       }
     }, 10000); 
     return () => clearInterval(interval); 

@@ -5,6 +5,10 @@ volumes:
   keycloak_data:
   mongodb_data:
 
+networks:
+  default:
+      driver: bridge
+
 services:
 
   frontend:

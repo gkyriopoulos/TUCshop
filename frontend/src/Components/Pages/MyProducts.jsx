@@ -6,7 +6,7 @@ import './Styles/MyProducts.css'
 const MyProducts = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    getProductsUsername().then(data => {
+    getProductsUsername(localStorage.getItem("username")).then(data => {
       setProducts(data || []);
     });
   }, []);
@@ -56,6 +56,7 @@ const MyProducts = () => {
   return (
     <div className='container-main'>
       <div className='myproducts-container-main'>
+        {console.log(products)}
         {products.map( (product)=> (
           <div className="cart-main-info" key={product._id}>
             <div className="cart-prod">

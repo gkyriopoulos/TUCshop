@@ -39,14 +39,18 @@ const fetchProductsFromOrderTopic = async ()=>{
     await consumer.run({
         eachMessage: async ({message}) => {
             const jsonMsg = JSON.parse(message.value)
+            //console.log("Before handle products")
             const result = await handleProducts(jsonMsg)
+            //console.log("After handle products")
 
             if(result){
               const msg = {
                 id: jsonMsg.id,
                 status: "Success"
               };
+              //console.log("Before Send orders")
               await sendOrders(msg)
+              //console.log("After Send orders")
             }
 
             if(!result){

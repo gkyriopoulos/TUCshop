@@ -5,6 +5,7 @@ const handleProducts = async (orders)=>{
     try {
         for (const product of orders.products){
             url = base_url + "/products/id/" + product.product_id
+            //console.log("Product url for request: " + url)
             //Get the product from the db.
             const product_db = await axios.get(url);
             //Check if there is enough products in stock.
